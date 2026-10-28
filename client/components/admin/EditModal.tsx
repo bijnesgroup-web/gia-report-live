@@ -13,6 +13,7 @@ import { Label } from "../../components/ui/label";
 import { Textarea } from "../../components/ui/textarea";
 import { useReport, useUpdateReport } from "../../hooks/useReports";
 import { DEFAULT_COMMENT } from "../../lib/env";
+import { getAssetUrl } from "../../lib/assetUrl";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select";
 
 interface JewelryReport {
@@ -357,9 +358,7 @@ const EditModal = ({ reportNumber, onClose, onSave }: EditModalProps) => {
                                                     // <img src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/${productLogoPreview}`} alt="Product logo preview" className="object-contain w-full h-full" />
                                                     <img
                                                         src={
-                                                            productLogoPreview?.startsWith("blob:")
-                                                                ? productLogoPreview
-                                                                : `${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/${productLogoPreview}`
+                                                            getAssetUrl(productLogoPreview, "image")
                                                         }
                                                         alt="Product logo preview"
                                                         className="object-contain w-full h-full"
@@ -405,9 +404,7 @@ const EditModal = ({ reportNumber, onClose, onSave }: EditModalProps) => {
                                                     // eslint-disable-next-line @next/next/no-img-element
                                                     <img
                                                         src={
-                                                            companyLogoPreview?.startsWith("blob:")
-                                                                ? companyLogoPreview
-                                                                : `${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/logo/${companyLogoPreview}`
+                                                            getAssetUrl(companyLogoPreview, "logo")
                                                         }
                                                         alt="Company logo preview"
                                                         className="object-contain w-full h-full"

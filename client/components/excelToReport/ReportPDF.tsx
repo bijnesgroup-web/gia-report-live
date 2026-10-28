@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react"
 import { View, Text, Image, StyleSheet, Font } from "@react-pdf/renderer"
 import { BOTTOM_DATE, DEFAULT_COMMENT, DEFAULT_COMMENT_ELECTRONIC_COPY_ONE, DEFAULT_COMMENT_ELECTRONIC_COPY_TWO, IMPORTANT_NOTICE, IMPORTANT_NOTICE_BOLD } from "../../lib/env";
 import QRCode from "qrcode";
+import { getAssetUrl } from "../../lib/assetUrl";
+
 
 // Description is a multi-line value. Keep its line spacing tighter than the
 // normal value rows so 3-line descriptions render as a compact, EVENLY
@@ -361,7 +363,7 @@ export default function ReportPDF({
 
                         {isSingleGridLayout && data.company_logo && <View style={styles.electronicCopyImageAbsolute}>
                             <Image
-                                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/logo/${data.company_logo}`}
+                                src={getAssetUrl(data.company_logo, "logo")}
                                 style={{ width: "100%", height: "100%", objectFit: "fill" }}
                             />
                         </View>}
@@ -386,7 +388,7 @@ export default function ReportPDF({
                         </View>}
                         <View style={styles.rightImageAbsolute}>
                             <Image
-                                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/uploads/${data.image_filename}`}
+                                src={getAssetUrl(data.image_filename, "image")}
                                 style={{ width: "100%", height: "100%", objectFit: "fill" }}
                             />
                         </View>
